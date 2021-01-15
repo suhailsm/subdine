@@ -33,10 +33,13 @@ class OrderController extends BaseController
         ]);
         $order->save();
         $item = Items::find($request->item_id);
+        if($item->available < $request->quantity){
         $item->available = $item->available - $request->quantity;
+   
         $item->save();
-        // Notification::send(User::find(1), new Order($order));
-
+ else{
+        Notification::send(User::find(1), new Stock($item));
+}
         return $this->sendResponse(['order_id'=>$order->id],'Thank You for your order');
     }
 }

@@ -23,10 +23,9 @@ class ItemController extends BaseController
     	
     	foreach ($item as $_item) {
     		$_item->count = count(Orders::whereDate('created_at', '>=', Carbon::today()->subDays(2))->where('item_id',$_item->id)->get());
-    		$_item->sold = Orders::whereDate('created_at', '>=', Carbon::today()->subDays(10))->where('item_id',$_item->id)->get();
+    		$_item->sold = count(Orders::whereDate('created_at', '>=', Carbon::today()->subDays(10))->where('item_id',$_item->id)->get());
     	}
-
     	 //$most_sold = $item->sortBy($item->count,'DESC')->take(3)->get();
-    	return $this->sendResponse(['items'=>$item,'most_sold'=>$most_sold],'Success');
+    	return $this->sendResponse(['items'=>$item],'Success');
     }   
 }
