@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //items
-Route::get('get_items', 'ItemController@index');
-Route::post('order_item', 'OrderController@create');
-Route::get('lastday_count', 'ItemController@count');
+Route::get('get_products', 'ProductController@index');
+Route::post('order_cart', 'OrderController@create');
+Route::post('add_cart', 'CartController@create');
 

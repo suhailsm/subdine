@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Cart extends Model
 {
     protected $fillable = [
         'pro_id','quantity',
     ];
-    public function product()
+    public function products()
     {
-    	return $this->hasMany('App\Products','pro_id');
+        return $this->hasMany('App\Products','pro_id');
     }
 }
